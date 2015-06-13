@@ -1,0 +1,4 @@
+*.png
+*.log
+node_modules/*
+anmeldung-try.py

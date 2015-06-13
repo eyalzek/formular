@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+    <form action="/enter-info" method="post">
+        Personal info:
+        <br>
+        <div class="personal-info">
+            <input type="text" id="firstname" name="firstname" placeholder="First Name" />
+            <input type="text" id="lastname" name="lastname" placeholder="Last Name" />
+            <input type="text" id="country" name="country" placeholder="Country" />
+            <input type="email" id="email" name="email" placeholder="E-Mail" />
+        <div id="date" class="datefield">
+            <input id="day" name="day" type="tel" maxlength="2" placeholder="DD"/> /
+            <input id="month" name="month" type="tel" maxlength="2" placeholder="MM"/> /
+            <input id="year" name="year" type="tel" maxlength="4" placeholder="YYYY" />
+        </div>
+        </div>
+        <br>
+        Requested dates info:
+        <br>
+        <div class="date-info">
+            <input type="text" id="wantedmonth" name="wantedmonth" placeholder="Enter desired month" />
+            <input type="text" id="wantedyear" name="wantedyear" placeholder="Enter desired year" />
+            enter range of days that fit you:
+            <input type="text" id="startrange" name="startrange" placeholder="Enter range start day" />
+            <input type="text" id="endrange" name="endrange" placeholder="Enter range end day" />
+        </div>
+        <div class="button">
+            <button type="submit">Send Info</button>
+        </div>
+    </form>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+</body>
+</html>
