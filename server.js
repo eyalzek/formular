@@ -23,18 +23,18 @@ app.post('/enter-info', function(req, res) {
             if (err) throw err;
             console.log('info save as: ', path);
             // run worker:
-            proc = spawn('python', ['formular.py', path]);
-            proc.stdout.on('data', function (data) {
-              console.log('stdout: ' + data);
-            });
+            var proc = spawn('python', ['formular.py', path], {stdio: [0, 1, 2]});
+            // proc.stdout.on('data', function (data) {
+            //   console.log('stdout: ' + data);
+            // });
 
-            proc.stderr.on('data', function (data) {
-              console.log('stderr: ' + data);
-            });
+            // proc.stderr.on('data', function (data) {
+            //   console.log('stderr: ' + data);
+            // });
 
-            proc.on('exit', function (code) {
-              console.log('child process exited with code ' + code);
-            });
+            // proc.on('exit', function (code) {
+            //   console.log('child process exited with code ' + code);
+            // });
         });
     });
     res.send('Info received!')

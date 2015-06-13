@@ -6,6 +6,7 @@ from selenium.common import exceptions
 
 
 SLEEP_INTERVAL = 1800
+MAX_RETRIES = 20
 
 
 class Webpage(object):
@@ -13,7 +14,7 @@ class Webpage(object):
     def __init__(self, info):
         super(Webpage, self).__init__()
         self.info = info
-        self.driver = webdriver.Chrome()
+        self.driver = webdriver.PhantomJS()
         self.driver.set_window_size(1366, 768)
         self.url = "https://formular.berlin.de/xima-forms-29/get/14278898950750000?mandantid=/OTVBerlin_LABO_XIMA/000-01/instantiationTasks.properties"
 
@@ -111,7 +112,8 @@ def get_info(filename):
 def main(filename):
     info = get_info(filename)
     print(info)
-    while True:
+    for i in xrange(MAX_RETRIES):
+        print("************ MESSAGE FROM: " + info["email"] + " ************")
         page = Webpage(info)
         page.run_flow()
         page.select_month(info["wantedmonth"], info["wantedyear"])
@@ -121,10 +123,12 @@ def main(filename):
             print("Available date found in the given range!")
             print("Available dates are:")
             print(result)
+            page.screenshot("SUCCESS!")
             break
         print("No available dates in the given range...")
         print("Sleeping for %d" % SLEEP_INTERVAL)
         page.quit()
+        print("***************************************************\n")
         time.sleep(SLEEP_INTERVAL)
 
 if __name__ == "__main__":
